@@ -1,0 +1,46 @@
+<p class="title is-2">Challenge 1</p>
+<p class="subtitle is-5">Write a program that prints all the numbers from 1 to 100. However, for multiples of 3,
+  instead of the
+  number, print "Multi". For multiples of 5 print "IT". For numbers which are multiples of both 3 and 5,
+  print "Multipli".</p>
+<div class="interactive">
+  <a class="button is-info is-rounded" onclick="multipli()">
+    Click to run function</a>
+  <div class="content is-medium ">
+    <ul id="list">
+    </ul>
+  </div>
+</div>
+
+<script>
+  function multipli() {
+    let markers = [{ number: 3, term: 'Multi' }, { number: 5, term: 'IT' }, { number: (5 * 3), term: 'Multipli' },]
+    let length = 100;
+    var range = [];
+    for (var i = 1; i <= length; i++) { range.push(i); }
+    range.map(function (i) {
+      return markers.reduce(function (output, marker) {
+        if (i % marker.number === 0) {
+          output += marker.term;
+        }
+        return output.replace('MultiIT', '');
+      }, '');
+    })
+      .map(function (output, index) {
+        switch (output) {
+          case "":
+            return (index + 1)
+            break;
+          default:
+            return output
+        }
+      })
+      .forEach(function (output) {
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(output);
+        node.appendChild(textnode);
+        document.getElementById("list").appendChild(node);
+      });
+  }
+
+</script>
